@@ -1,1 +1,1 @@
-# nlp-image-caption-generator
+# NLP Image Caption Generator
