@@ -25,15 +25,30 @@
     </ul>
   </div>
 </nav>
-<div>
-  <div class="div1">
-    <img style="height:400px;" src="./Images/rafiki2.png" alt="rafiki">
+<br><br>
+<div style="height:450px;text-align: center;">
+  <div style="text-align: center;width: 40%;background-color:#A6DADC;" class="div1">
+    <h1 style="margin-top:100px;" class="heading"><%=text%></h1>
   </div>
-  <div style="text-align:center" class="div2">
-    <p style="text-align:left">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</p>
-    <a href="convert"><button  class="button" type="button" name="button">START</button></a>
+  <div style="justify-content:left;" class="div2">
+    <form action="speech" method="post">
+      <input type="text" name="speech" value="<%=text%>" hidden>
+      <button type="submit" name="button">
+        <h3 class="heading"><img style="width:8%;padding:1%;"src="./Images/Microphone.png" alt="Microphone">Text to Speech</h3><br>
+      </button>
+    </form>
+    <br><br>
+    <form action="translate" method="post">
+      <input type="text" name="translate" value="<%=text%>" hidden>
+      <button type="submit" name="button">
+        <h3 class="heading" href="#"><img style="width:8%;padding:1%;"src="./Images/Translation.png" alt="Microphone">Translate and Read</h3>
+      </button>
+    </form>
   </div>
 </div>
-<hr color="#A6DADC" size="50px">
+<hr background-color="#A6DADC" color="#A6DADC" size="50px">
+<script>
+
+</script>
   </body>
 </html>

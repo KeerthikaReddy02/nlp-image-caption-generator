@@ -5,10 +5,9 @@ const bodyParser = require("body-parser");
 const https = require("https");
 const axios = require("axios");
 const FormData = require("form-data");
-
-
-
-//let alert = require('alert');
+const gTTS = require('gtts');
+var player = require('play-sound')(opts = {})
+const translate = require("translate");
 
 const app = express();
 app.set("view engine", "ejs");
@@ -16,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 const corsOptions ={
-    origin:'http://localhost:3000', 
+    origin:'http://localhost:3000',
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
 }
@@ -51,7 +50,52 @@ app.post("/fileUpload",function(req,res){
 })
 
 app.get("/morefunctions",function(req,res){
+
   return res.sendFile(__dirname+"/morefunctions.html");
+})
+
+app.post("/func",function(req,res){
+   var speech = req.body.result;
+  setTimeout(function(){
+     return res.render("morefunctions",{text:speech});
+     return res.send();
+},1000);
+})
+
+app.post("/speech",function(req,res){
+   var speech = req.body.speech;
+   var gtts = new gTTS(speech, 'en');
+   gtts.save('./tmp/hello.mp3', function (err, result) {
+    if(err) { throw new Error(err) }
+    player.play('./tmp/hello.mp3', function(err){
+    if (err) throw err
+    })
+    });
+    setTimeout(function(){
+       return res.render("morefunctions",{text:speech});
+       return res.send();
+  },1000);
+})
+
+async function translateString(str,translateTo){
+  translate.engine="google";
+  const foo = await translate(str,translateTo);
+  var gtts = new gTTS(foo, 'hi');
+  gtts.save('./tmp/hello1.mp3', function (err, result) {
+   if(err) { throw new Error(err) }
+   player.play('./tmp/hello1.mp3', function(err){
+   if (err) throw err
+   })
+   });
+   return;
+}
+app.post("/translate",function(req,res){
+   var tran = req.body.translate;
+   translateString(tran,"hi");
+   setTimeout(function(){
+      return res.render("morefunctions",{text:tran});
+      return res.send();
+ },1000);
 })
 
 app.listen(process.env.PORT ||3000,()=>console.log("Server is running"));

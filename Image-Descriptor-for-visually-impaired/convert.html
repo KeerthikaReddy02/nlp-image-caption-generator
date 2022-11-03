@@ -34,7 +34,7 @@
             <a class="nav-link" href="aboutus">About Us</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="morefunctions">More functions</a>
+            <a class="nav-link" href="convert">More functions</a>
           </li>
         </ul>
       </div>
@@ -80,9 +80,24 @@
     </div>
     <br />
     <h3 id="result">
-      <span>Hello </span>
+      <span id="text">Hello</span>
     </h3>
 
+    <form id="form" action="func" method="post">
+      <input id="info" type="text" name="result" value="" hidden>
+      <button type="submit" style="display:none;margin:auto;" class="button1" name="button" id="btn-speech">
+        CONVERT TO SPEECH
+      </button>
+    </form>
+
     <script src="./js/main.js" type="text/javascript"></script>
+    <script>
+      var txt = document.getElementById("text").innerHTML;
+      if(txt!=="Hello")
+      {
+        document.getElementById("info").value=txt;
+        document.getElementById("btn-speech").style.display="block";
+      }
+    </script>
   </body>
 </html>
