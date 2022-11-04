@@ -65,9 +65,9 @@ app.post("/func",function(req,res){
 app.post("/speech",function(req,res){
    var speech = req.body.speech;
    var gtts = new gTTS(speech, 'en');
-   gtts.save('./tmp/hello.mp3', function (err, result) {
+   gtts.save('./tmp/TextToSpeech.mp3', function (err, result) {
     if(err) { throw new Error(err) }
-    player.play('./tmp/hello.mp3', function(err){
+    player.play('./tmp/TextToSpeech.mp3', function(err){
     if (err) throw err
     })
     });
@@ -81,9 +81,9 @@ async function translateString(str,translateTo){
   translate.engine="google";
   const foo = await translate(str,translateTo);
   var gtts = new gTTS(foo, 'hi');
-  gtts.save('./tmp/hello1.mp3', function (err, result) {
+  gtts.save('./tmp/TextToSpeechTranslated.mp3', function (err, result) {
    if(err) { throw new Error(err) }
-   player.play('./tmp/hello1.mp3', function(err){
+   player.play('./tmp/TextToSpeechTranslated.mp3', function(err){
    if (err) throw err
    })
    });
